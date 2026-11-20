@@ -18,23 +18,15 @@
 			};
 
 			boot.loader = {
-				systemd-boot.enable = true;
+				grub = {
+					enable = true;
+					efiSupport = true;
+					device = "nodev";
+					useOSProber = true;
+					configurationLimit = 20;
+				};
 				efi.canTouchEfiVariables = true;
 			};
-
-			boot.extraModulePackages = [ config.boot.kernelPackages.amneziawg ];
-
-			fileSystems = {
-				"/".options = [ "compress=zstd" "noatime" ];
-				"/nix".options = [ "compress=zstd" "noatime" ];
-				"/home".options = [ "compress=zstd" "noatime" ];
-				"/swap".options = [ "noatime" ];
-			};
-
-			swapDevices = [{
-				device = "/swap/swapfile";
-				size = 16*1024;
-			}];
 
 			services.pipewire = {
 				enable = true;
