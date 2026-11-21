@@ -18,15 +18,17 @@
 			};
 
 			boot.loader = {
-				grub = {
+				limine = {
 					enable = true;
 					efiSupport = true;
-					device = "nodev";
-					useOSProber = true;
-					configurationLimit = 20;
+					maxGenerations = 10;
 				};
 				efi.canTouchEfiVariables = true;
 			};
+
+			services.displayManager.enable = true;
+			systemd.services.lidm.enable = true;
+			services.lidm.config = "catppuccin-mocha";
 
 			services.pipewire = {
 				enable = true;

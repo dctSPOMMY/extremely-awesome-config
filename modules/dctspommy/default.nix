@@ -1,5 +1,5 @@
 { self, inputs, ... }: {
-	
+
 	flake.homeConfigurations.dctspommy = inputs.home-manager.lib.homeManagerConfiguration {
 
 		pkgs = import inputs.nixpkgs {
@@ -14,10 +14,11 @@
 			self.homeModules.niri
 			self.homeModules.kitty
 			self.homeModules.fish
-			self.homeModules.theme
+			inputs.catppuccin.homeModules.catppuccin
+			self.homeModules.catppuccin
 			self.homeModules.git
 		];
-	
+
 	};
 
 }
